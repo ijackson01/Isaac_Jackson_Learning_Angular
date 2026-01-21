@@ -1,4 +1,12 @@
-<h1>Learning Angular</h1>
+<div *ngFor="let song of songs">
+  <h3>{{ song.title }}</h3>
+  <p><strong>Artist:</strong> {{ song.artist }}</p>
+  <p><strong>Genre:</strong> {{ song.genre }}</p>
+  <p><strong>Duration:</strong> {{ song.durationSeconds }} seconds</p>
 
-<p>Student: {{studentName}}</p>
-<p>Course: {{courseName}}</p>
+  <div *ngIf="song.album">
+    <p><strong>Album:</strong> {{ song.album }}</p>
+  </div>
+
+  <hr />
+</div>
