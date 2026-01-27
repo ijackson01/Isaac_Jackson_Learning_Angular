@@ -1,1 +1,5 @@
-<p>song-list works!</p>
+<app-song-list-item
+  *ngFor="let song of songs"
+  [song]="song"
+  (songSelected)="onSongSelected($event)"
+></app-song-list-item>
