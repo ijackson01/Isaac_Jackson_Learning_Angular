@@ -1,1 +1,15 @@
-<p>song-list-item works!</p>
+<div class="song-card" (click)="selectSong()">
+  <h3>{{ song.title }}</h3>
+
+  <p><strong>Artist:</strong> {{ song.artist }}</p>
+  <p><strong>Genre:</strong> {{ song.genre }}</p>
+  <p><strong>Duration:</strong> {{ song.durationSeconds }} seconds</p>
+
+  <div *ngIf="song.album">
+    <p><strong>Album:</strong> {{ song.album }}</p>
+  </div>
+
+  <button type="button" (click)="selectSong(); $event.stopPropagation()">
+    Select
+  </button>
+</div>
