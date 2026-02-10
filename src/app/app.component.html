@@ -1,10 +1,11 @@
-<app-song-list-item
-  *ngIf="selectedSong"
-  [song]="selectedSong">
-</app-song-list-item>
-<hr />
+<mat-toolbar color="primary">
+  <span>My Songs</span>
+  <span class="spacer"></span>
 
-<app-song-list></app-song-list>
+  <a mat-button routerLink="/">Home</a>
+  <a mat-button routerLink="/modify">Modify</a>
+</mat-toolbar>
 
-<textarea>This is Required to be here</textarea>
-x
+<div class="page">
+  <router-outlet></router-outlet>
+</div>

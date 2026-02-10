@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { Song } from '../models/song';
-import { SongListItemComponent } from '../song-list-item/song-list-item';
 import { SongService } from '../services/song';
+import { SongListItemComponent } from '../song-list-item/song-list-item';
 
 @Component({
   selector: 'app-song-list',
@@ -12,17 +13,20 @@ import { SongService } from '../services/song';
   styleUrls: ['./song-list.css']
 })
 export class SongListComponent implements OnInit {
+
   songs: Song[] = [];
+  selectedSong?: Song;
 
   constructor(private songService: SongService) {}
 
   ngOnInit(): void {
-    this.songService.getSongs().subscribe(data => {
+    this.songService.getSongs().subscribe((data: Song[]) => {
       this.songs = data;
     });
   }
 
   onSongSelected(song: Song): void {
+    this.selectedSong = song;
     console.log('Selected song:', song);
   }
 }

@@ -1,5 +1,14 @@
 <app-song-list-item
+  *ngIf="selectedSong"
+  [song]="selectedSong"
+></app-song-list-item>
+
+<hr />
+
+<app-song-list-item
   *ngFor="let song of songs"
   [song]="song"
   (songSelected)="onSongSelected($event)"
 ></app-song-list-item>
+
+<textarea>This is Required to be here</textarea>

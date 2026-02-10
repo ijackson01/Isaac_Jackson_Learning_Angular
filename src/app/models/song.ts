@@ -13,4 +13,5 @@ export interface Song {
   genre: SongGenre;
   durationSeconds: number;
   album?: string;
+  imageUrl: string;
 }
