@@ -1,2 +1,31 @@
-<h2>Modify Song</h2>
-<p>This page will be used to modify a song.</p>
+<h2>{{ editing ? 'Edit Song' : 'Add Song' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <label>ID</label>
+  <input type="number" formControlName="id">
+
+  <label>Title</label>
+  <input type="text" formControlName="title">
+
+  <label>Artist</label>
+  <input type="text" formControlName="artist">
+
+  <label>Genre</label>
+  <input type="text" formControlName="genre">
+
+  <label>Duration</label>
+  <input type="number" formControlName="durationSeconds">
+
+  <label>Album</label>
+  <input type="text" formControlName="album">
+
+  <label>Image URL</label>
+  <input type="text" formControlName="imageUrl">
+
+  <br><br>
+
+  <button type="submit">Save</button>
+  <button type="button" (click)="reset()">Reset</button>
+
+</form>
