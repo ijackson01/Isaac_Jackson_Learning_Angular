@@ -8,43 +8,33 @@ import { MOCK_SONGS } from '../data/mock-content';
 })
 export class SongService {
 
-  // ✅ Copia editable del mock (para poder hacer CRUD)
   private songs: Song[] = [...MOCK_SONGS];
 
-  constructor() {}
-
-  // ✅ READ ALL
   getSongs(): Observable<Song[]> {
     return of(this.songs);
   }
 
-  // ✅ READ (por id)
   getSongById(id: number): Observable<Song | undefined> {
-    const found = this.songs.find(s => s.id === id);
-    return of(found);
+    return of(this.songs.find(s => s.id === id));
   }
 
-  // Create
-  addSong(newSong: Song): Observable<Song[]> {
-    this.songs.push(newSong);
+  addSong(song: Song): Observable<Song[]> {
+    this.songs.push(song);
     return of(this.songs);
   }
 
-  // Update
-  updateSong(updatedSong: Song): Observable<Song[]> {
-    const index = this.songs.findIndex(s => s.id === updatedSong.id);
+  updateSong(song: Song): Observable<Song[]> {
+    const index = this.songs.findIndex(s => s.id === song.id);
     if (index !== -1) {
-      this.songs[index] = updatedSong;
+      this.songs[index] = song;
     }
     return of(this.songs);
   }
 
-  // Delete
   deleteSong(id: number): Observable<Song | undefined> {
     const index = this.songs.findIndex(s => s.id === id);
     if (index !== -1) {
-      const removed = this.songs.splice(index, 1)[0];
-      return of(removed);
+      return of(this.songs.splice(index, 1)[0]);
     }
     return of(undefined);
   }
