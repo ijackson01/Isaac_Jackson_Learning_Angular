@@ -1,10 +1,11 @@
-<mat-toolbar color="primary">
-  <span>My Songs</span>
-  <span class="spacer"></span>
+<nav class="navbar">
+  <b>My Songs</b>
 
-  <a mat-button routerLink="/">Home</a>
-  <a mat-button routerLink="/modify">Modify</a>
-</mat-toolbar>
+  <div class="links">
+    <a routerLink="/">Home<br></a>
+    <a routerLink="/modify">Modify</a>
+  </div>
+</nav>
 
 <div class="page">
   <router-outlet></router-outlet>
