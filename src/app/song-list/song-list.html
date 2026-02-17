@@ -1,14 +1,24 @@
+<h2>Song List</h2>
+
+<a routerLink="/modify">Add New Song</a>
+
 <app-song-list-item
   *ngIf="selectedSong"
-  [song]="selectedSong"
-></app-song-list-item>
+  [song]="selectedSong">
+</app-song-list-item>
 
-<hr />
+<hr>
 
-<app-song-list-item
-  *ngFor="let song of songs"
-  [song]="song"
-  (songSelected)="onSongSelected($event)"
-></app-song-list-item>
+<div *ngFor="let song of songs">
+  <app-song-list-item
+    [song]="song"
+    (songSelected)="onSongSelected($event)">
+  </app-song-list-item>
+
+  <button type="button" (click)="editSong(song.id)">Edit</button>
+  <button type="button" (click)="deleteSong(song.id)">Delete</button>
+
+  <hr>
+</div>
 
 <textarea>This is Required to be here</textarea>
