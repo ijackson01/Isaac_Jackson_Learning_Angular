@@ -4,7 +4,6 @@ import { Router, RouterLink } from '@angular/router';
 
 import { Song } from '../models/song';
 import { SongService } from '../services/song';
-import { SongListItemComponent } from '../song-list-item/song-list-item';
 
 @Component({
   selector: 'app-song-list',
@@ -17,6 +16,7 @@ export class SongListComponent implements OnInit {
 
   songs: Song[] = [];
   selectedSong?: Song;
+  error: string | null = null;
 
   constructor(private songService: SongService, private router: Router) {}
 
@@ -25,16 +25,19 @@ export class SongListComponent implements OnInit {
   }
 
   loadSongs(): void {
-    this.songService.getSongs().subscribe((data: Song[]) => {
-      this.songs = data;
+    this.songService.getSongs().subscribe({
+      next: (data: Song[]) => {
+        this.songs = data;
+        this.error = null;
+      },
+      error: err => {
+        this.error = 'Error fetching songs';
+        console.error('Error fetching songs', err);
+      }
     });
   }
 
   selectSong(song: Song): void {
-    this.selectedSong = song;
-  }
-
-  onSongSelected(song: Song): void {
     this.selectedSong = song;
   }
 
@@ -43,10 +46,17 @@ export class SongListComponent implements OnInit {
   }
 
   deleteSong(id: number): void {
-    this.songService.deleteSong(id).subscribe(() => {
-      this.loadSongs();
-      if (this.selectedSong && this.selectedSong.id === id) {
-        this.selectedSong = undefined;
+    this.songService.deleteSong(id).subscribe({
+      next: () => {
+        this.loadSongs();
+        if (this.selectedSong && this.selectedSong.id === id) {
+          this.selectedSong = undefined;
+        }
+        this.error = null;
+      },
+      error: err => {
+        this.error = 'Error deleting song';
+        console.error('Error deleting song', err);
       }
     });
   }
