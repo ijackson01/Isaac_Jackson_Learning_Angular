@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Song } from '../models/song';
-import { MatButtonModule } from '@angular/material/button';
-@Component({
 
+@Component({
   selector: 'app-song-list-item',
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule],
   templateUrl: './song-list-item.html',
   styleUrls: ['./song-list-item.css']
 })

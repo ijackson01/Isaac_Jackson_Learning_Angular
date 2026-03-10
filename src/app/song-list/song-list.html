@@ -2,19 +2,38 @@
 
 <a routerLink="/modify">Add New Song</a>
 
-<app-song-list-item
-  *ngIf="selectedSong"
-  [song]="selectedSong">
-</app-song-list-item>
+<div *ngIf="selectedSong">
+  <hr>
+  <h3>Selected Song</h3>
+
+  <img [src]="selectedSong.imageUrl" alt="Song image" width="150">
+
+  <p><strong>{{ selectedSong.title }}</strong></p>
+  <p>Artist: {{ selectedSong.artist }}</p>
+  <p>Genre: {{ selectedSong.genre }}</p>
+  <p>Duration: {{ selectedSong.durationSeconds }} seconds</p>
+
+  <div *ngIf="selectedSong.album">
+    <p>Album: {{ selectedSong.album }}</p>
+  </div>
+</div>
 
 <hr>
 
 <div *ngFor="let song of songs">
-  <app-song-list-item
-    [song]="song"
-    (songSelected)="onSongSelected($event)">
-  </app-song-list-item>
 
+  <img [src]="song.imageUrl" alt="Song image" width="150">
+
+  <p><strong>{{ song.title }}</strong></p>
+  <p>Artist: {{ song.artist }}</p>
+  <p>Genre: {{ song.genre }}</p>
+  <p>Duration: {{ song.durationSeconds }} seconds</p>
+
+  <div *ngIf="song.album">
+    <p>Album: {{ song.album }}</p>
+  </div>
+
+  <button type="button" (click)="selectSong(song)">Select</button>
   <button type="button" (click)="editSong(song.id)">Edit</button>
   <button type="button" (click)="deleteSong(song.id)">Delete</button>
 

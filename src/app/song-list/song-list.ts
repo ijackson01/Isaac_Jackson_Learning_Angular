@@ -9,7 +9,7 @@ import { SongListItemComponent } from '../song-list-item/song-list-item';
 @Component({
   selector: 'app-song-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, SongListItemComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './song-list.html',
   styleUrls: ['./song-list.css']
 })
@@ -28,6 +28,10 @@ export class SongListComponent implements OnInit {
     this.songService.getSongs().subscribe((data: Song[]) => {
       this.songs = data;
     });
+  }
+
+  selectSong(song: Song): void {
+    this.selectedSong = song;
   }
 
   onSongSelected(song: Song): void {
